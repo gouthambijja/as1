@@ -5,6 +5,7 @@
 }
 [tooltip-position="top"]::before,[tooltip-position="right"]::before,[tooltip-position="left"]::before,[tooltip-position="bottom"]::before{
     content:attr(tooltip);
+    width: max-content;
     max-width: 600px;
     padding: 5px;
     border-radius: 3px;
