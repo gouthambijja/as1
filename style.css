@@ -1,9 +1,7 @@
-[tooltip-position="top"],[tooltip-position="right"],
-[tooltip-position="left"],[tooltip-position="bottom"]{
+[tooltip-position="top"],[tooltip-position="right"],[tooltip-position="left"],[tooltip-position="bottom"]{
     position: relative;
-    /* display: inline-block; */
 }
-[tooltip-position="top"]::before,[tooltip-position="right"]::before,[tooltip-position="left"]::before,[tooltip-position="bottom"]::before{
+[tooltip-position]::before{
     content:attr(tooltip);
     width: max-content;
     max-width: 600px;
@@ -12,95 +10,60 @@
     background-color: cadetblue;
     position: absolute;
     word-wrap: break-word;
-    transition: transform 0.1s ease-in-out;
+    visibility: hidden;
 }
-[tooltip-position="top"]::after,
-[tooltip-position="right"]::after,
-[tooltip-position="bottom"]::after,
-[tooltip-position="left"]::after{
+[tooltip-position]::after{
     content: "";
     border: 10px solid transparent;
     position: absolute;
     word-wrap: break-word;
-    transition: transform 0.1s ease-in-out;
+    visibility: hidden;
 }
-/* top */
+:not([tooltip=""])[tooltip]:hover::before{
+    visibility: visible;
+}
+:not([tooltip=""])[tooltip]:hover::after{
+visibility: visible;    
+}
 [tooltip-position="top"]::before{
     left:50%;
-    transform: translateY(calc(-100% - 10px)) translateX(-50%) scale(0);
-    transform-origin: bottom;
+    transform: translateY(calc(-100% - 10px)) translateX(-50%);
 }
 [tooltip-position="top"]::after{
     border-top-color: cadetblue;
     top:-10px;
     left:50%;
-    transform: translateX(-50%) scale(0);
-    transform-origin: top;
+    transform: translateX(-50%);
 }
-:not([tooltip=""])[tooltip][tooltip-position="top"]:hover::before{
-    transform: translateY(calc(-100% - 12px)) translateX(-50%) scale(1);
-}
-[tooltip-position="top"]:hover::after{
-    transform: translateY(-2px) translateX(-50%) scale(1);
-}
-/* :right */
 [tooltip-position="right"]::before{
     left: calc(100% + 10px);
     top:50%;
-    transform:translateY(-50%) scale(0);
-    transform-origin: left;
+    transform:translateY(-50%);
 }
 [tooltip-position="right"]::after{
     border-right-color: cadetblue;
     top:50%;
     right: -10px;
-    transform: translateY(-50%) scale(0);
-    transform-origin: right;
+    transform: translateY(-50%);
 }
-:not([tooltip=""])[tooltip][tooltip-position="right"]:hover::before{
-    transform:translateY(-50%) scale(1);
-}
-:not([tooltip=""])[tooltip][tooltip-position="right"]:hover::after{
-    transform: translateY(-50%) scale(1);
-}
-/* bottom */
 [tooltip-position="bottom"]::before{
     top: calc(100% + 10px);
     left:50%;
-    transform:translateX(-50%) scale(0);
-    transform-origin: top;
+    transform:translateX(-50%);
 }
 [tooltip-position="bottom"]::after{
     border-bottom-color: cadetblue;
     top:calc(100% - 10px);
     left: 50%;
-    transform: translateX(-50%) scale(0);
-    transform-origin: bottom;
+    transform: translateX(-50%);
 }
-:not([tooltip=""])[tooltip][tooltip-position="bottom"]:hover::before{
-    transform:translateX(-50%) scale(1);
-}
-:not([tooltip=""])[tooltip][tooltip-position="bottom"]:hover::after{
-    transform: translateX(-50%) scale(1);
-}
-/* :left */
 [tooltip-position="left"]::before{
     top:50%;
-    transform: translateX(calc(-100% - 10px)) translateY(-50%) scale(0);
-    transform-origin: right;
+    transform: translateX(calc(-100% - 9px)) translateY(-50%);
 }
 [tooltip-position="left"]::after{
     left:0px;
     top:50%;
     border-left-color: cadetblue;
-
-    transform: translateY(-50%) translateX(-10px) scale(0);
-    transform-origin: left;
-}
-:not([tooltip=""])[tooltip][tooltip-position="left"]:hover::before{
-    transform: translateX(calc(-100% - 10px)) translateY(-50%) scale(1);
-
-}
-:not([tooltip=""])[tooltip][tooltip-position="left"]:hover::after{
-    transform: translateY(-50%) translateX(-10px) scale(1);
+    transform: translateY(-50%) translateX(-10px) ;
 }
