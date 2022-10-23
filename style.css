@@ -1,37 +1,50 @@
-[tooltip-position="top"],[tooltip-position="right"],[tooltip-position="left"],[tooltip-position="bottom"]{
-    position: relative;
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
-[tooltip-position]::before{
+[tooltip]{
+    position: relative;
+    box-shadow: 0px 5px 5px rgb(202, 202, 202);
+    padding: 7px 20px;
+    border-radius: 5px;
+    color: rgb(24, 122, 122);
+}
+[tooltip-position]::before, :not([tooltip-position])[tooltip]::before{
     content:attr(tooltip);
     width: max-content;
     max-width: 600px;
     padding: 5px;
     border-radius: 3px;
-    background-color: cadetblue;
+    background-color: rgb(119, 119, 119);
     position: absolute;
     word-wrap: break-word;
     visibility: hidden;
 }
-[tooltip-position]::after{
+[tooltip-position]::after, [tooltip]:not([tooltip-position])::after{
     content: "";
     border: 10px solid transparent;
     position: absolute;
     word-wrap: break-word;
     visibility: hidden;
 }
-:not([tooltip=""])[tooltip]:hover::before{
+:not([tooltip=""])[tooltip]:hover::before, [tooltip]:not([tooltip=""]):not([tooltip-position]):hover::before{
     visibility: visible;
+    color: #fff;
 }
-:not([tooltip=""])[tooltip]:hover::after{
+:not([tooltip=""])[tooltip]:hover::after, [tooltip]:not([tooltip=""]):not([tooltip-position]):hover::after{
 visibility: visible;    
 }
-[tooltip-position="top"]::before{
+[tooltip-position="top"]::before , :not([tooltip-position])[tooltip]::before{
     left:50%;
-    transform: translateY(calc(-100% - 10px)) translateX(-50%);
+    bottom: calc(100% + 10px);
+    transform:  translateX(-50%);
 }
-[tooltip-position="top"]::after{
-    border-top-color: cadetblue;
-    top:-10px;
+[tooltip-position="top"]::after , :not([tooltip-position])[tooltip]::after{
+    border-top-color: rgb(119, 119, 119);
+    bottom: calc(100% - 10px);
     left:50%;
     transform: translateX(-50%);
 }
@@ -41,7 +54,7 @@ visibility: visible;
     transform:translateY(-50%);
 }
 [tooltip-position="right"]::after{
-    border-right-color: cadetblue;
+    border-right-color: rgb(119, 119, 119);
     top:50%;
     right: -10px;
     transform: translateY(-50%);
@@ -52,18 +65,19 @@ visibility: visible;
     transform:translateX(-50%);
 }
 [tooltip-position="bottom"]::after{
-    border-bottom-color: cadetblue;
+    border-bottom-color: rgb(119, 119, 119);
     top:calc(100% - 10px);
     left: 50%;
     transform: translateX(-50%);
 }
 [tooltip-position="left"]::before{
     top:50%;
-    transform: translateX(calc(-100% - 9px)) translateY(-50%);
+    right:calc(100% + 10px);
+    transform:  translateY(-50%);
 }
 [tooltip-position="left"]::after{
-    left:0px;
+    left:-10px;
     top:50%;
-    border-left-color: cadetblue;
-    transform: translateY(-50%) translateX(-10px) ;
+    border-left-color: rgb(119, 119, 119);
+    transform: translateY(-50%) ;
 }
