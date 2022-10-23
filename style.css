@@ -21,6 +21,7 @@ body{
     background-color: rgb(119, 119, 119);
     position: absolute;
     word-wrap: break-word;
+    z-index: 1;
     visibility: hidden;
 }
 [tooltip-position]::after, [tooltip]:not([tooltip-position])::after{
